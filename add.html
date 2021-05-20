@@ -1,0 +1,38 @@
+<form name="form_add" method="post">
+    <div class="column">
+        <div class="add">
+            <label>Фамилия</label> <input type="text" name="surname" placeholder="Фамилия" required>
+        </div>
+        <div class="add">
+            <label>Имя</label> <input type="text" name="name" placeholder="Имя" required>
+        </div>
+        <div class="add">
+            <label>Отчество</label> <input type="text" name="secondname" placeholder="Имя" required>
+        </div>
+        <div class="add">
+            <label>Пол</label> 
+            <select name="gender" required>
+                <option value=''>выберите</option>
+                <option value="мужской">мужской</option>
+                <option value="женский">женский</option>
+            </select>
+        </div>
+        <div class="add">
+            <label>Дата рождения</label> <input type="date" name="birthday" required>
+        </div>
+        <div class="add">
+            <label>Телефон</label> <input type="tel" name="phone" placeholder="Телефон">
+        </div>
+        <div class="add">
+            <label>Адрес</label> <input type="text" name="address" placeholder="Адрес">
+        </div>
+        <div class="add">
+            <label>Email</label> <input type="email" name="email" placeholder="Email" >
+        </div>
+        <div class="add">
+            <label>Комментарий</label> <textarea name="comment" placeholder="Краткий комментарий"></textarea>
+        </div>
+    
+            <button type="submit" value="Добавить запись" name="button" class="form-btn">Добавить запись</button>
+    </div>
+    </form>
