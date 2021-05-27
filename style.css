@@ -46,7 +46,7 @@ nav>a {
     color: inherit;
 }
 
-a{
+a, .pages>span{
    font-family: 'Lemonada', cursive;
    text-decoration: none;
    color:var(--color_a);
@@ -85,9 +85,9 @@ header img {
     text-align: center;
 }
 
-.submenu .select{
-        text-decoration: underline;
-        text-decoration-style: double;
+.submenu .selected{
+    text-decoration: underline;
+    text-decoration-style: double;
 }
 
 .success {
@@ -173,6 +173,10 @@ td{
 .form-btn:hover {
     cursor: pointer;
     background-color: #0d26b4;
+}
+
+.pages>span {
+    font-weight: bold;
 }
 
 footer {

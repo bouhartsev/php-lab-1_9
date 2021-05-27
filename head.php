@@ -17,14 +17,14 @@
             <?php
             $links = [
                 'Просмотр' => '',
-                'Добавление записи' => 'add',
-                'Редактирование записи' => 'edit',
-                'Удаление записи' => 'delete',
+                'Добавление записи' => 'add.php',
+                'Редактирование записи' => 'edit.php',
+                'Удаление записи' => 'delete.php',
             ];
-            // $path = ''.basename($_SERVER['REQUEST_URI']);
+            $path = ''.basename($_SERVER['REQUEST_URI']);
             foreach($links as $key => $value) {
                 echo '<a href="./'.$value.'"';
-                if ($value == basename($_SERVER['REQUEST_URI'])) echo ' class="selected"';
+                if ($path==$value || $path==$value.'index.php' || $path==$value.'index') echo ' class="selected"';
                 echo '>'.$key;
                 echo '</a>';
             };

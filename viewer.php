@@ -1,23 +1,26 @@
-
-
 <?php
-    
-    function getFriendsList($type, $page)
+    function session_from_get() {
+        if (isset($_GET['pg'])) $_SESSION['pg'] = $_GET['pg'];
+        if (isset($_GET['sort'])) $_SESSION['sort'] = $_GET['sort'];
+    }
+
+
+    function getTable($sort_type, $page)
     {
-        // echo '<div id="submenu">'; // выводим подменю
-            // echo '<a href="?p=viewer&sort=byid"'; // первый пункт подменю
-            // if( !isset($_GET['sort']) || $_GET['sort'] == 'byid' )
-            // echo ' class="selected"';
-            // echo '>По-умолчанию</a>';
-            // echo '<a href="?p=viewer&sort=fam"'; // второй пункт подменю
-            // if( isset($_GET['sort']) && $_GET['sort'] == 'fam' )
-            // echo ' class="selected"';
-            // echo '>По фамилии</a>';
-            // echo '<a href="?p=viewer&sort=born"'; // третий пункт подменю
-            // if( isset($_GET['sort']) && $_GET['sort'] == 'born' )
-            // echo ' class="selected"';
-            // echo '>По дате рождения</a>';
-            // echo '</div>'; // конец подменю
+        echo '<div class="submenu">'; // выводим подменю
+        echo '<a href="?sort=byid"'; // первый пункт подменю
+        if( $sort_type == 'byid' )
+        echo ' class="selected"';
+        echo '>По-умолчанию</a>';
+        echo '<a href="?sort=fam"'; // второй пункт подменю
+        if( $sort_type == 'fam' )
+        echo ' class="selected"';
+        echo '>По фамилии</a>';
+        echo '<a href="?sort=born"'; // третий пункт подменю
+        if( $sort_type == 'born' )
+        echo ' class="selected"';
+        echo '>По дате рождения</a>';
+        echo '</div>'; // конец подменю
 
         require 'secret.php';
         $mysqli = mysqli_connect($DB_host, $DB_login, $DB_password, $DB_name);
@@ -36,10 +39,10 @@
             if( $page>=$TOTAL ) // если указана страница больше максимальной
                 $page=$TOTAL-1; // будем выводить последнюю страницу
         // формируем и выполняем SQL-запрос для выборки записей из БД
-            $sort_type = 'id';
-            if ($_GET['sort'] == 'fam') $sort_type = $DB_fields['surname'];
-            else if ($_GET['sort'] == 'born') $sort_type =  $DB_fields['birthday'];
-            $sql='SELECT * FROM '.$DB_table_name.' ORDER BY '.$sort_type.' LIMIT '.($page*10).', 10'; 
+            $sort_type_db = 'id';
+            if ($sort_type == 'fam') $sort_type_db = $DB_fields['surname'];
+            else if ($sort_type == 'born') $sort_type_db =  $DB_fields['birthday'];
+            $sql='SELECT * FROM '.$DB_table_name.' ORDER BY '.$sort_type_db.' LIMIT '.($page*10).', 10'; 
             $sql_res=mysqli_query($mysqli, $sql);
 
             $ret='<table>'; // строка с будущим контентом страницы
@@ -69,10 +72,10 @@
             $ret.='</table>'; // заканчиваем формирование таблицы с контентом
             if( $PAGES>1 ) // если страниц больше одной – добавляем пагинацию
             {
-                $ret.='<div id="pages">'; // блок пагинации
+                $ret.='<div class="pages">'; // блок пагинации
                 for($i=0; $i<$PAGES; $i++) // цикл для всех страниц пагинации
                 if( $i != $page ) // если не текущая страница
-                $ret.='<a href="?p=viewer&pg='.$i.'">'.($i+1).'</a>';
+                $ret.='<a href="?pg='.$i.'">'.($i+1).'</a>';
                 else // если текущая страница
                 $ret.='<span>'.($i+1).'</span>';
                 $ret.='</div>';
