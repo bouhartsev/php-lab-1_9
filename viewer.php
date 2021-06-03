@@ -1,10 +1,4 @@
 <?php
-    function session_from_get() {
-        if (isset($_GET['pg'])) $_SESSION['pg'] = $_GET['pg'];
-        if (isset($_GET['sort'])) $_SESSION['sort'] = $_GET['sort'];
-    }
-
-
     function getTable($sort_type, $page)
     {
         echo '<div class="submenu">'; // выводим подменю

@@ -115,7 +115,8 @@ header img {
 }
 
 .div-edit{
-    width: 200px;
+    margin: 15px auto 10px;
+    width: fit-content;
     text-align: left;
     padding-left: 15px;
 }

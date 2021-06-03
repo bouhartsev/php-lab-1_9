@@ -1,8 +1,6 @@
 <?php
     require 'head.php';
 
-    session_start();
-
     // если были переданы данные для добавления в БД
     if( isset($_POST['button']) && $_POST['button']== 'Добавить запись')
     {
@@ -20,7 +18,7 @@
         }
         $query_add .= ') VALUES (';
         foreach($DB_fields as $key => $value) {
-            $query_add .= '"'.$_POST[$key].'"';
+            $query_add .= '"'.htmlspecialchars($_POST[$key]).'"';
             if ($key!='comment') $query_add .= ', ';
         }
         $query_add .= ')';
@@ -41,6 +39,7 @@
         $_SESSION['query_result']='-1';
     }
 
+    $controlVar = false;
     require 'add.html';
     require 'foot.php';
 ?>

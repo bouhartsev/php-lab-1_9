@@ -15,19 +15,26 @@
 
         <nav id="menu">
             <?php
+            function session_from_get() {
+                if( !isset($_SESSION['pg'])) $_SESSION['pg']=0;
+                if (isset($_GET['pg'])) $_SESSION['pg'] = $_GET['pg'];
+                if (isset($_GET['sort'])) $_SESSION['sort'] = $_GET['sort'];
+            }
+
             $links = [
-                'Просмотр' => '',
+                'Просмотр' => 'index.php',
                 'Добавление записи' => 'add.php',
                 'Редактирование записи' => 'edit.php',
                 'Удаление записи' => 'delete.php',
             ];
-            $path = ''.basename($_SERVER['REQUEST_URI']);
+            $path = explode('?',''.basename($_SERVER['REQUEST_URI']))[0];
             foreach($links as $key => $value) {
                 echo '<a href="./'.$value.'"';
-                if ($path==$value || $path==$value.'index.php' || $path==$value.'index') echo ' class="selected"';
+                if (strpos($path,$value)!==false || $path==''&&$key=='Просмотр') echo ' class="selected"';
                 echo '>'.$key;
                 echo '</a>';
             };
+            session_start();
             ?>
         </nav>
     </header>
