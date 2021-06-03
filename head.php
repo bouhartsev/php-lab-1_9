@@ -31,7 +31,7 @@
             $path = explode('?',''.basename($_SERVER['REQUEST_URI']))[0];
             foreach($links as $key => $value) {
                 echo '<a href="./'.$value.'"';
-                if (strpos($path,$value)!==false || $path==''&&$key=='Просмотр') echo ' class="selected"';
+                if (strpos($path,$value)!==false || ($path=='' || $path=='lab1_9')&&$value=='index.php') echo ' class="selected"';
                 echo '>'.$key;
                 echo '</a>';
             };

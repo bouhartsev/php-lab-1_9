@@ -1,5 +1,5 @@
 <?php
-function getList() {
+function getList($isDelete=false) {
         session_from_get();
         $page=$_SESSION['pg'];
 
@@ -27,7 +27,7 @@ function getList() {
             while( $row=mysqli_fetch_assoc($sql_res) )
             {
                 $isSelected = (isset($_GET['id'])&&$_GET['id']==$row['id']) ? ' class="currentRow"' : '';
-                $onclick = "onclick='(function(e){ if (!confirm(`Удалить данные?`)) e.preventDefault(); })(event)'";
+                $onclick = ($isDelete) ? "onclick='(function(e){ if (!confirm(`Удалить данные?`)) e.preventDefault(); })(event)'" : '';
                 $ret .= '<a href="?id='.$row['id'].'"'.$isSelected.' '.$onclick.'>('.$row['id'].') '.$row[$DB_fields['surname']].' '.$row['name'].'. '.$row['secondname'].'.</a><br>';
             }
             $ret .= '</div>';

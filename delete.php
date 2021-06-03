@@ -21,7 +21,7 @@ function deleteValues($id=1) {
     require 'editing.php';
     require 'head.php';
 
-    echo getList();
+    echo getList(true);
 
     if (isset($_GET['id'])) {
         deleteValues($_GET['id']);
