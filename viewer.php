@@ -26,12 +26,12 @@
         $sql_res=mysqli_query($mysqli, 'SELECT COUNT(*) FROM '.$DB_table_name);
         // проверяем корректность выполнения запроса и определяем его результат
         if( !mysqli_errno($mysqli) && $row=mysqli_fetch_row($sql_res) )
-        {   
+        {
             if( !$TOTAL=$row[0] ) // если в таблице нет записей
                 return 'В таблице нет данных'; // возвращаем сообщение
             $PAGES = ceil($TOTAL/10); // вычисляем общее количество страниц
-            if( $page>=$TOTAL ) // если указана страница больше максимальной
-                $page=$TOTAL-1; // будем выводить последнюю страницу
+            if( $page>=$PAGES ) // если указана страница больше максимальной
+                $page=$PAGES-1; // будем выводить последнюю страницу
         // формируем и выполняем SQL-запрос для выборки записей из БД
             $sort_type_db = 'id';
             if ($sort_type == 'fam') $sort_type_db = $DB_fields['surname'];

@@ -21,11 +21,12 @@
             $query_add .= '"'.htmlspecialchars($_POST[$key]).'"';
             if ($key!='comment') $query_add .= ', ';
         }
-        $query_add .= ')';
+        $query_add .= ');';
 
         $sql_res=mysqli_query($mysqli, $query_add);
 
         // если при выполнении запроса произошла ошибка – выводим сообщение
+        $_SESSION['query_result_data'] = '('.mysqli_insert_id($mysqli).') '.htmlspecialchars($_POST['surname']);
         $_SESSION['query_result'] = !mysqli_errno($mysqli);
         header("Location: ".$_SERVER['REQUEST_URI']);
     }
@@ -34,7 +35,7 @@
             if( $_SESSION['query_result']=='0' )
                 echo '<div class="error">Запись не добавлена</div>';
             else if ( $_SESSION['query_result']=='1' ) // если все прошло нормально – выводим сообщение
-                echo '<div class="ok">Запись добавлена</div>';
+                echo '<div class="ok">Запись "'.$_SESSION['query_result_data'].'" добавлена</div>';
         }
         $_SESSION['query_result']='-1';
     }

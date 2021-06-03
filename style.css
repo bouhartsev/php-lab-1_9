@@ -176,6 +176,10 @@ td{
     background-color: #0d26b4;
 }
 
+.pages {
+    margin-bottom: 20px;
+}
+
 .pages>span {
     font-weight: bold;
 }
