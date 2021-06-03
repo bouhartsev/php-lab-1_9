@@ -1,0 +1,38 @@
+<form name="form_add" method="post">
+    <div class="column">
+        <div class="add">
+            <label>Фамилия</label> <input type="text" name="surname" placeholder="Фамилия" required value="<?php if($controlVar) echo $db_row_data['surname']; ?>">
+        </div>
+        <div class="add">
+            <label>Имя</label> <input type="text" name="name" placeholder="Имя" required value="<?php if($controlVar) echo $db_row_data['name']; ?>">
+        </div>
+        <div class="add">
+            <label>Отчество</label> <input type="text" name="secondname" placeholder="Отчество" required value="<?php if($controlVar) echo $db_row_data['secondname']; ?>">
+        </div>
+        <div class="add">
+            <label>Пол</label> 
+            <select name="gender" required>
+                <option value=''>выберите</option>
+                <option value="мужской" <?php if($controlVar && $db_row_data['gender']=='мужской') echo 'selected'; ?> >мужской</option>
+                <option value="женский" <?php if($controlVar && $db_row_data['gender']=='женский') echo 'selected'; ?> >женский</option>
+            </select>
+        </div>
+        <div class="add">
+            <label>Дата рождения</label> <input type="date" name="birthday" required value="<?php if($controlVar) echo $db_row_data['birthday']; ?>">
+        </div>
+        <div class="add">
+            <label>Телефон</label> <input type="tel" name="phone" placeholder="Телефон" value="<?php if($controlVar) echo $db_row_data['phone']; ?>">
+        </div>
+        <div class="add">
+            <label>Адрес</label> <input type="text" name="address" placeholder="Адрес" value="<?php if($controlVar) echo $db_row_data['address']; ?>">
+        </div>
+        <div class="add">
+            <label>Email</label> <input type="email" name="email" placeholder="Email" required value="<?php if($controlVar) echo $db_row_data['email']; ?>">
+        </div>
+        <div class="add">
+            <label>Комментарий</label> <textarea name="comment" placeholder="Краткий комментарий"><?php if($controlVar) echo $db_row_data['comment']; ?></textarea>
+        </div>
+    
+            <button type="submit" value="Добавить запись" name="button" class="form-btn"><?php if($controlVar) echo 'Сохранить'; else echo 'Добавить'; ?> запись</button>
+    </div>
+    </form>
