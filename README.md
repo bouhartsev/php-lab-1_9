@@ -30,6 +30,11 @@ Polytech php, 1 course, 2 semester, lab9
 ```
 extension=php_mysql.dll
 ```
+или
+```
+extension=mysqli
+```
+
 Проверьте, правильно ли у вас указана папка с расширениями. Там должна быть реально существующая папка. Например:
 ```
 extension_dir = "c:/php/ext"
