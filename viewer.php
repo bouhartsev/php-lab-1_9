@@ -22,6 +22,8 @@
         if( mysqli_connect_errno() ) // проверяем корректность подключения
             return 'Ошибка подключения к БД: '.mysqli_connect_error();
         
+        $mysqli->set_charset("utf8mb4");
+        
         // формируем и выполняем SQL-запрос для определения числа записей
         $sql_res=mysqli_query($mysqli, 'SELECT COUNT(*) FROM '.$DB_table_name);
         // проверяем корректность выполнения запроса и определяем его результат
